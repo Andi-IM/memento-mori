@@ -23,7 +23,7 @@ class VillageSeeder extends Seeder
             $data = $csv->csv_to_array($file->getRealPath(), $header);
 
             $data = array_map(function ($arr) use ($now) {
-                $arr['meta'] = json_encode(['lat' => $arr['lat'], 'long' => $arr['long'], 'post' => $arr['pos']]);
+                $arr['meta'] = json_encode(['lat' => $arr['lat'], 'long' => $arr['long'], 'pos' => $arr['pos']]);
                 unset($arr['district_code'], $arr['lat'], $arr['long'], $arr['pos']);
 
                 return $arr + ['created_at' => $now, 'updated_at' => $now];

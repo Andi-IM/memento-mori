@@ -24,8 +24,14 @@ class VillageController extends Controller
      */
     public function store(StoreVillageRequest $request)
     {
-        $village = Village::create($request->validated());
-        return VillageResource::make($village);
+        if ($request->validated()) {
+            $village = Village::create([
+                "code" => $request->code,
+                "name" => $request->name,
+                "meta" =>  json_encode(["lat" => $request->lat, "long" => $request->long, "pos" => $request->pos])
+            ]);
+            return VillageResource::make($village);
+        }
     }
 
     /**
@@ -41,8 +47,13 @@ class VillageController extends Controller
      */
     public function update(UpdateVillageRequest $request, Village $village)
     {
-        $village->update($request->validated());
-        return VillageResource::make($village);
+        if ($request->validated()) {
+            $village->update([
+                "name" => $request->name,
+                "meta" =>  json_encode(["lat" => $request->lat, "long" => $request->long, "pos" => $request->pos])
+            ]);
+            return VillageResource::make($village);
+        }
     }
 
     /**

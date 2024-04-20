@@ -23,8 +23,10 @@ class StoreVillageRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'code' => 'required|string|max:10|unique',
-            'meta' => 'required|string'
+            'code' => 'required|string|unique:villages,code|max:10',
+            'lat' => 'decimal:2,4|nullable',
+            'long' => 'decimal:2,4|nullable',
+            'pos' => 'numeric|nullable'
         ];
     }
 }

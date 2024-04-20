@@ -9,13 +9,9 @@ class Village extends Model
 {
     use HasFactory;
 
-    protected $lat, $long, $post;
+    protected $fillable = ['code', 'name', 'meta'];
 
     public function user() {
         return $this->belongsTo(User::class);
-    }
-
-    public function getMeta($lat, $long, $post){
-        return json_encode(["lat" => $lat, "long" => $long, "post" => $post]);
     }
 }
